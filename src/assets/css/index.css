@@ -1,0 +1,57 @@
+.main-outer-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px 10px;
+}
+
+.add-task-container {
+  width: 300px;
+}
+
+.current-task-container {
+  width: 1000px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.current-task-container .card {
+  display: flex;
+  flex-flow: column wrap;
+  text-align: center;
+  width: 400px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.current-task-container h2 {
+  font-family: "Sansita Swashed", cursive;
+}
+
+.scroll_card {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 65vh;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #343a40;
+  border-radius: 20px;
+}

@@ -1,0 +1,9 @@
+footer {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-evenly;
+}
+footer span {
+  border-radius: 5px;
+  padding: 5px 20px;
+}

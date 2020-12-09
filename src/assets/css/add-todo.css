@@ -1,0 +1,31 @@
+.add-task-card {
+  padding: 0px 10px 0px 10px;
+}
+
+hr {
+  margin-top: 10px;
+}
+
+small {
+  color: red;
+}
+
+.card h2 {
+  font-family: "Sansita Swashed", cursive;
+}
+
+input {
+  width: 100%;
+  text-transform: capitalize;
+}
+textarea {
+  width: 100%;
+  font-size: 16px;
+  resize: none;
+  text-transform: capitalize;
+}
+
+.add-todo-btn {
+  padding: 6px 30px 6px 30px;
+  border-radius: 20px;
+}
