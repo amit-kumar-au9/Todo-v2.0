@@ -15,7 +15,7 @@ small {
 }
 
 input {
-  width: 100%;
+  /* width: 100%; */
   text-transform: capitalize;
 }
 textarea {
