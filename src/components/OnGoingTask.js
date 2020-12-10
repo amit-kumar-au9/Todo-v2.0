@@ -64,16 +64,15 @@ class OnGoingTask extends React.Component{
     };
     const hr_color = {
       backgroundColor: line_colors[this.index],
-      height: '1px',
-      marginRight: '5px'
+      height: '1px'
     };
 
     return(
       <>
         <div className="task-card" style={card_color}>
           <div>
-          <i className="task-action fa fa-trash text-danger bg-white" onClick={this.popTasks} aria-hidden="true"></i>
-            {/* <i className="task-action fa fa-pencil-square-o text-dark bg-white" onClick={this.editTasks} aria-hidden="true"></i> */}
+            <i className="task-action fa fa-trash text-danger bg-white" onClick={this.popTasks} aria-hidden="true"></i>
+            <i className="task-action fa fa-pencil-square-o text-dark bg-white" onClick={this.editTasks} aria-hidden="true"></i>
             <i className="task-action fa fa-check text-success bg-white" aria-hidden="true"></i>
             <i className="task-action fa fa-refresh text-primary bg-white" aria-hidden="true"></i>
           </div>

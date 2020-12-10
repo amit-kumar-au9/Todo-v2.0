@@ -15,9 +15,10 @@ small {
 }
 
 input {
-  /* width: 100%; */
+  width: 100%;
   text-transform: capitalize;
 }
+
 textarea {
   width: 100%;
   font-size: 16px;

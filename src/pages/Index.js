@@ -55,13 +55,13 @@ class Index extends React.Component{
                                 <h2>Completed tasks</h2>
                                 <hr/>
                                 <div className="scroll_card">
-                                    {
+                                    {/* {
                                         this.props.tasks.map((task,idx) => {
                                             return (
                                                 <CompletedTask task_value={task} key={idx} id={idx}/>
                                                 )
                                             })
-                                        }
+                                        } */}
                                 </div>
                             </div>
                         </div>
