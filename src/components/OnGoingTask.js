@@ -64,8 +64,7 @@ class OnGoingTask extends React.Component{
     };
     const hr_color = {
       backgroundColor: line_colors[this.index],
-      height: '1px',
-      // marginRight: '10px'
+      height: '1px'
     };
 
     return(

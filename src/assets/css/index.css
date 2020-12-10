@@ -41,16 +41,10 @@
   scrollbar-width: thin;
 }
 
-/* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  background: #fff0;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #343a40;
-  border-radius: 20px;
+.card {
+  border-radius: 30px;
+  background-image: url("../img/card3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
