@@ -48,7 +48,7 @@ class AddTodo extends React.Component{
         return(
             <div className="card add-task-card">
                 <div className="card-body">
-                    <h2 className="text-center">Task To Do</h2>
+                    <h2 className="text-center">Let's start</h2>
                     <hr/>
                     <form onSubmit={this.pushTasks}>
                         <div className="row">

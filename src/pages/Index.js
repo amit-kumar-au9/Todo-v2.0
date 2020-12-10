@@ -37,7 +37,7 @@ class Index extends React.Component{
                     <div className="current-task-container">
                         <div className="card text-center">
                             <div className="card-body">
-                                <h2>On going tasks</h2>
+                                <h2>Pending tasks</h2>
                                 <hr/>
                                 <div className="scroll_card">
                                     {

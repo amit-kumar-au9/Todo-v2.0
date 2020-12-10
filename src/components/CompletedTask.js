@@ -1,7 +1,29 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import '../assets/css/CompletedTask.css'
-import { STORE_ACTION} from '../actions'
+import '../assets/css/TaskCard.css'
+import { STORE_ACTION } from '../actions'
+
+const bg_colors = [
+  'linear-gradient(225deg, hsla(354, 71%, 45%, 1) 0%, hsla(354, 82%, 70%, 1) 100%)', //red
+  'linear-gradient(225deg, hsla(210, 10%, 23%, 1) 0%, hsla(210, 6%, 45%, 1) 100%)', //black
+  'linear-gradient(225deg, hsla(28, 100%, 52%, 1) 0%, hsla(45, 84%, 66%, 1) 100%)', //orange
+  'linear-gradient(225deg, hsla(79, 68%, 46%, 1) 0%, hsla(169, 100%, 48%, 1) 100%)', //light green
+  'linear-gradient(225deg, hsla(156, 100%, 37%, 1) 0%, hsla(186, 81%, 57%, 1) 100%)', //green
+  'linear-gradient(225deg, hsla(185, 100%, 29%, 1) 0%, hsla(186, 81%, 57%, 1) 100%)', //dark green
+  'linear-gradient(225deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 81%, 57%, 1) 100%)', //blue
+  'linear-gradient(225deg, hsla(320, 66%, 45%, 1) 0%, hsla(339, 73%, 72%, 1) 100%)' //pink
+];
+
+const line_colors = [
+  '#C72838', //red
+  '#3A4046', //black
+  '#FC8B1A', //orange
+  '#78CE44', //light green
+  '#05C07C', //green
+  '#058F9C', //dark green
+  '#056CFE', //blue
+  '#C43290' //pink
+];
 
 class CompletedTask extends React.Component{
   constructor(props){
@@ -33,19 +55,17 @@ class CompletedTask extends React.Component{
     })
   }
 
-  
-  colors = ['#28A745', '#DC3545', '#FFC107', '#17A2B8', '#343A40', '#007BFF', '#6C757D']
-  index = this.props.id % this.colors.length
+  index = this.props.id % bg_colors.length
   
   render(){
     const card_color = {
       color: "white",
-      backgroundColor: this.colors[this.index]
+      background: bg_colors[this.index]
     };
     const hr_color = {
-      backgroundColor: this.colors[this.index],
+      backgroundColor: line_colors[this.index],
       height: '1px',
-      marginRight: '10px'
+      // marginRight: '10px'
     };
 
     return(
@@ -53,11 +73,11 @@ class CompletedTask extends React.Component{
         <div className="task-card" style={card_color}>
           <div>
             <i className="task-action fa fa-trash text-danger bg-white" onClick={this.popTasks} aria-hidden="true"></i>
+            {/* <i className="task-action fa fa-pencil-square-o text-dark bg-white" onClick={this.editTasks} aria-hidden="true"></i> */}
+            <i className="task-action fa fa-check text-success bg-white" aria-hidden="true"></i>
             <i className="task-action fa fa-refresh text-primary bg-white" aria-hidden="true"></i>
-            <i className="task-action fa fa-check text-warning bg-white" aria-hidden="true"></i>
-            <i className="task-action fa fa-pencil-square-o text-success bg-white" onClick={this.editTasks} aria-hidden="true"></i>
           </div>
-          <textarea className="card-textarea" name="task_title" value={this.props.task_value} onChange={this.onChangeHandler}>
+          <textarea className="card-textarea" rows="4" name="task_title" value={this.props.task_value} onChange={this.onChangeHandler}>
             {this.props.task_value}
           </textarea>
         </div>
