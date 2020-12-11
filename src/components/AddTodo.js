@@ -11,9 +11,9 @@ class AddTodo extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            title: 'new 1',
+            title: '',
             end_date: curr,
-            detail: "Lorem ipsum, or lipsum as it is sometimes known.",
+            detail: "",
             error_msg:{ title_length_msg: 'It cannot contain more than 40 character' },
             title_length_error: false
         }
@@ -47,9 +47,9 @@ class AddTodo extends React.Component{
             })
         }
         this.setState({
-            title: 'new 1',
+            title: '',
             end_date: curr,
-            detail: "Lorem ipsum, or lipsum as it is sometimes known."
+            detail: ""
         })
     }
     
