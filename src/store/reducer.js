@@ -8,18 +8,18 @@ const reducer = (state, action) => {
     switch(action.type){
         case 'ADD_TASK':
             const new_task = {
-                task_title: action.payload[0], 
-                task_completion_date: action.payload[1], 
-                task_details: action.payload[2],
+                title: action.payload[0], 
+                end_date: action.payload[1], 
+                detail: action.payload[2],
                 id: state.counter++
             }
             return{
                 ...state, 
-                tasks: [new_task,...state.tasks]
+                tasks: [...state.tasks,new_task]
             }
         case 'REMOVE_TASK':
             {
-                const index = action.payload
+                const index = state.tasks.indexOf(action.payload)
                 return{
                     ...state,
                     tasks: [...state.tasks.slice(0, index),

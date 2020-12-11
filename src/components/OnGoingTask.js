@@ -29,16 +29,16 @@ class OnGoingTask extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      task_title : this.props.task_value.task_title,
-      task_completion_date: this.props.task_value.task_completion_date,
-      task_details: this.props.task_value.task_details
+      title : this.props.task_value.title,
+      end_date: this.props.task_value.end_date,
+      detail: this.props.task_value.detail
     }
   }
 
   popTasks = () => {
     this.props.dispatch({
       type: STORE_ACTION.REMOVE,
-      payload: this.props.id
+      payload: this.props.task_value
     })
   }
 
@@ -66,20 +66,26 @@ class OnGoingTask extends React.Component{
       backgroundColor: line_colors[this.index],
       height: '1px'
     };
+
     return(
       <>
         <div className="task-card" style={card_color}>
-          <div>
-            <i className="task-action fa fa-trash text-danger bg-white" onClick={this.popTasks} aria-hidden="true"></i>
-            <i className="task-action fa fa-pencil-square-o text-dark bg-white" onClick={this.editTasks} aria-hidden="true"></i>
-            <i className="task-action fa fa-check text-success bg-white" aria-hidden="true"></i>
-            <i className="task-action fa fa-refresh text-primary bg-white" aria-hidden="true"></i>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-9">
+                <input type="text" name="title" value={this.state.title} onChange={this.onChangeHandler} required/>
+              </div>
+              <div className="col-md-3">
+                <i className="task-action fa fa-trash text-danger bg-white" onClick={this.popTasks} aria-hidden="true"></i>
+                <i className="task-action fa fa-check text-success bg-white" aria-hidden="true"></i>
+                <i className="spinner-border spinner-border-sm text-white" aria-hidden="true"></i>
+              </div>
+            </div>
           </div>
-          <input type="text" name="task_title" value={this.state.task_title} onChange={this.onChangeHandler} required/>
-          <textarea className="card-textarea" rows="4" name="task_details" value={this.state.task_details} onChange={this.onChangeHandler} required>
-            {this.state.task_details}
+          <textarea className="card-textarea" rows="2" name="detail" value={this.state.detail} onChange={this.onChangeHandler} required>
+            {this.state.detail}
           </textarea>
-          <input type="date" name="task_completion_date" value={this.state.task_completion_date} onChange={this.onChangeHandler} required/>
+          <input type="date" name="end_date" value={this.state.end_date} onChange={this.onChangeHandler} required/>
         </div>
         <hr style={hr_color}/>
       </>

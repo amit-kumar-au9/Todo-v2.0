@@ -3,25 +3,43 @@ import {connect} from 'react-redux'
 import '../assets/css/add-todo.css'
 import { STORE_ACTION} from '../actions'
 
+const today_date = new Date()
+const month = today_date.getMonth()+1
+var curr = today_date.getFullYear() + '-' + month + '-' + today_date.getDate()
+
 class AddTodo extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            new_task_title: '',
-            new_task_date: '',
-            new_task_details: ''
+            title: 'new 1',
+            end_date: curr,
+            detail: "Lorem ipsum, or lipsum as it is sometimes known.",
+            error_msg:{ title_length_msg: 'It cannot contain more than 40 character' },
+            title_length_error: false
         }
     }
 
     onChangeHandler = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            title_length_error: false
+        })
+        if(this.state.title.length >= 39){
+            this.setState({
+                title_length_error: true
+            })
+        }
+    }
+
+    componentDidMount(){
+        this.setState({
+            end_date: curr
         })
     }
 
     pushTasks = (e) =>{
         e.preventDefault()
-        const task_arr = [this.state.new_task_title, this.state.new_task_date, this.state.new_task_details]
+        const task_arr = [this.state.title, this.state.end_date, this.state.detail]
         if (task_arr[0] && task_arr[1] && task_arr[2]){
             this.props.dispatch({
                 type: STORE_ACTION.ADD,
@@ -29,9 +47,9 @@ class AddTodo extends React.Component{
             })
         }
         this.setState({
-            new_task_title: '',
-            new_task_date: '',
-            new_task_details: ''
+            title: 'new 1',
+            end_date: curr,
+            detail: "Lorem ipsum, or lipsum as it is sometimes known."
         })
     }
     
@@ -39,23 +57,48 @@ class AddTodo extends React.Component{
         return(
             <div className="card add-task-card">
                 <div className="card-body">
-                    <h2 className="text-center">Let's start</h2>
+                    <h2 className="text-center" data-text="Let's start..." >Let's start...</h2>
                     <hr/>
                     <form onSubmit={this.pushTasks}>
                         <div className="row">
                             <div className="col-12">
                                 <label>Task Title: </label> <small>{this.state.error && this.state.errorMsg}</small>
-                                <input className="form-control" type="text" value={this.state.new_task_title} name="new_task_title" placeholder="Enter the task" onChange={this.onChangeHandler} required/>
+                                <input 
+                                    className="form-control" 
+                                    type="text" 
+                                    value={this.state.title} 
+                                    name="title" 
+                                    maxlength="40"
+                                    placeholder="Enter the task" 
+                                    onChange={this.onChangeHandler} 
+                                    required
+                                />
+                                <small className="text-danger">{this.state.title_length_error && this.state.error_msg.title_length_msg}</small>
                             </div>
                             <div className="col-12">
                                 <hr/>
                                 <label>End Date: </label>
-                                <input className="form-control" type="date" value={this.state.new_task_date} name="new_task_date" onChange={this.onChangeHandler} required/>
+                                <input 
+                                    className="form-control" 
+                                    type="date" 
+                                    value={this.state.end_date} 
+                                    name="end_date" 
+                                    onChange={this.onChangeHandler} 
+                                    required
+                                />
                             </div>
                             <div className="col-12">
                                 <hr/>
                                 <label>Task Details: </label>
-                                <textarea className="form-control" rows="2" placeholder="Enter the details" value={this.state.new_task_details} name="new_task_details" onChange={this.onChangeHandler} required></textarea>
+                                <textarea 
+                                    className="form-control" 
+                                    rows="2" 
+                                    placeholder="Enter the details" 
+                                    value={this.state.detail} 
+                                    name="detail" 
+                                    onChange={this.onChangeHandler} 
+                                    required
+                                ></textarea>
                                 <hr/>
                             </div>
                         </div>
@@ -74,4 +117,5 @@ const mapStateToProps = (state) =>{
         tasks : state.tasks
     }
 }
+
 export default connect(mapStateToProps)(AddTodo);
