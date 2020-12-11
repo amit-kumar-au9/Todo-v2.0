@@ -31,28 +31,31 @@ class OnGoingTask extends React.Component{
     this.state = {
       title : this.props.task_value.title,
       end_date: this.props.task_value.end_date,
-      detail: this.props.task_value.detail
+      detail: this.props.task_value.detail,
+      row_no: 2
     }
   }
 
-  popTasks = () => {
-    this.props.dispatch({
-      type: STORE_ACTION.REMOVE,
-      payload: this.props.task_value
-    })
-  }
-
-  editTasks = (e) => {
+  editTasks = (status) => {
     this.props.dispatch({
       type: STORE_ACTION.EDIT,
-      payload:{ task_idx: this.props.id, new_value: e.target.value }
+      payload:{ 
+        task_idx: this.props.id, 
+        new_value: {
+          title : this.state.title,
+          end_date: this.state.end_date,
+          detail: this.state.detail,
+          status: status
+        } 
+      }
     })
   }
 
-  onChangeHandler = (e) => {
+  onChangeHandler = (key, value) => {
     this.setState({
-      [e.target.name] : e.target.value
+      [key] : value
     })
+    this.editTasks('pending')
   }
 
   index = this.props.id % bg_colors.length
@@ -72,20 +75,21 @@ class OnGoingTask extends React.Component{
         <div className="task-card" style={card_color}>
           <div className="container">
             <div className="row">
-              <div className="col-md-9">
-                <input type="text" name="title" value={this.state.title} onChange={this.onChangeHandler} required/>
+              <div className="col-8">
+                <input type="text" name="title" maxLength="40" value={this.state.title} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required/>
               </div>
-              <div className="col-md-3">
-                <i className="task-action fa fa-trash text-danger bg-white" onClick={this.popTasks} aria-hidden="true"></i>
-                <i className="task-action fa fa-check text-success bg-white" aria-hidden="true"></i>
-                <i className="spinner-border spinner-border-sm text-white" aria-hidden="true"></i>
+              <div className="col-4">
+                <i className="task-action fa fa-check text-success bg-white" onClick={() => this.editTasks('completed')} aria-hidden="true"></i>
+                {this.state.row_no === 2 && <i class="task-action text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 4)} aria-hidden="true"></i> }
+                {this.state.row_no > 2 && <i class="task-action text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
+                {/* <i className="task-action fa fa-spinner text-primary bg-white fa-spin" aria-hidden="true"></i> */}
               </div>
             </div>
           </div>
-          <textarea className="card-textarea" rows="2" name="detail" value={this.state.detail} onChange={this.onChangeHandler} required>
+          <textarea className="card-textarea" rows={this.state.row_no} name="detail" value={this.state.detail} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required>
             {this.state.detail}
           </textarea>
-          <input type="date" name="end_date" value={this.state.end_date} onChange={this.onChangeHandler} required/>
+          <input type="date" name="end_date" value={this.state.end_date} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required/>
         </div>
         <hr style={hr_color}/>
       </>

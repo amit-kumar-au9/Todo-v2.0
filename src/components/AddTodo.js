@@ -39,7 +39,7 @@ class AddTodo extends React.Component{
 
     pushTasks = (e) =>{
         e.preventDefault()
-        const task_arr = [this.state.title, this.state.end_date, this.state.detail]
+        const task_arr = [this.state.title, this.state.end_date, this.state.detail, 'pending']
         if (task_arr[0] && task_arr[1] && task_arr[2]){
             this.props.dispatch({
                 type: STORE_ACTION.ADD,
@@ -58,25 +58,24 @@ class AddTodo extends React.Component{
             <div className="card add-task-card">
                 <div className="card-body">
                     <h2 className="text-center" data-text="Let's start..." >Let's start...</h2>
-                    <hr/>
+                    <hr className="hr_black"/>
                     <form onSubmit={this.pushTasks}>
                         <div className="row">
-                            <div className="col-12">
+                            <div className="col-12 mt-1">
                                 <label>Task Title: </label> <small>{this.state.error && this.state.errorMsg}</small>
                                 <input 
                                     className="form-control" 
                                     type="text" 
                                     value={this.state.title} 
                                     name="title" 
-                                    maxlength="40"
+                                    maxLength="40"
                                     placeholder="Enter the task" 
                                     onChange={this.onChangeHandler} 
                                     required
                                 />
                                 <small className="text-danger">{this.state.title_length_error && this.state.error_msg.title_length_msg}</small>
                             </div>
-                            <div className="col-12">
-                                <hr/>
+                            <div className="col-12 mt-1">
                                 <label>End Date: </label>
                                 <input 
                                     className="form-control" 
@@ -87,23 +86,21 @@ class AddTodo extends React.Component{
                                     required
                                 />
                             </div>
-                            <div className="col-12">
-                                <hr/>
+                            <div className="col-12 mt-1">
                                 <label>Task Details: </label>
                                 <textarea 
                                     className="form-control" 
-                                    rows="2" 
+                                    rows="5" 
                                     placeholder="Enter the details" 
                                     value={this.state.detail} 
                                     name="detail" 
                                     onChange={this.onChangeHandler} 
                                     required
                                 ></textarea>
-                                <hr/>
                             </div>
                         </div>
                         <center>
-                            <button className="btn btn-dark add-todo-btn" type="submit">ADD</button>
+                            <button className="btn btn-dark add-todo-btn mt-2" type="submit">ADD</button>
                         </center>
                     </form>
                 </div>

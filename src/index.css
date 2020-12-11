@@ -1,6 +1,7 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 /* @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap"); */
 
 body {
@@ -55,4 +56,15 @@ code {
 *::-webkit-scrollbar-thumb {
   background-color: #343a40;
   border-radius: 20px;
+}
+
+*:focus {
+  outline: none;
+}
+
+hr.hr_black {
+  border-top: 2px dashed black;
+  margin: 0;
+  margin: 5px 0 5px 0;
+  padding: 0;
 }

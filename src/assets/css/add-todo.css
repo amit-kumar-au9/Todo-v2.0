@@ -11,7 +11,8 @@ small {
 }
 
 .card h2 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Poppinss", sans-serif;
+  font-weight: 700;
 }
 
 input {
@@ -28,5 +29,5 @@ textarea {
 
 .add-todo-btn {
   padding: 6px 30px 6px 30px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }

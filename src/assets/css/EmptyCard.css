@@ -1,0 +1,8 @@
+.empty-card {
+  padding: 30px 10px 30px 10px;
+  position: relative;
+  text-align: center;
+  /* margin-right: 5px; */
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgb(0 0 0 / 0.2);
+}
