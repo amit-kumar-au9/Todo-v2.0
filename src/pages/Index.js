@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import AddTodo from '../components/AddTodo'
 import OnGoingTask from '../components/OnGoingTask'
-import CompletedTask from '../components/CompletedTask'
+// import CompletedTask from '../components/CompletedTask'
 import Footer from '../components/Footer'
 import {connect} from 'react-redux'
 import { STORE_ACTION} from '../actions'
@@ -27,6 +27,7 @@ class Index extends React.Component{
     }
 
     render(){
+        console.log(this.props.tasks)
         return(
             <>  
                 <Navbar/>

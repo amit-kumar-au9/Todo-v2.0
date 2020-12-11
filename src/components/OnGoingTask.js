@@ -29,7 +29,9 @@ class OnGoingTask extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      task_title : this.props.task_value
+      task_title : this.props.task_value.task_title,
+      task_completion_date: this.props.task_value.task_completion_date,
+      task_details: this.props.task_value.task_details
     }
   }
 
@@ -48,10 +50,8 @@ class OnGoingTask extends React.Component{
   }
 
   onChangeHandler = (e) => {
-    const key = e.target.name
-    const value = e.target.value
     this.setState({
-      [key] : value
+      [e.target.name] : e.target.value
     })
   }
 
@@ -66,7 +66,6 @@ class OnGoingTask extends React.Component{
       backgroundColor: line_colors[this.index],
       height: '1px'
     };
-
     return(
       <>
         <div className="task-card" style={card_color}>
@@ -76,13 +75,11 @@ class OnGoingTask extends React.Component{
             <i className="task-action fa fa-check text-success bg-white" aria-hidden="true"></i>
             <i className="task-action fa fa-refresh text-primary bg-white" aria-hidden="true"></i>
           </div>
-          {/* <label>Heading</label>
-          <input></input>
-          <label>Date</label>
-          <label>Task Details</label> */}
-          <textarea className="card-textarea" rows="4" name="task_title" value={this.props.task_value} onChange={this.onChangeHandler}>
-            {this.props.task_value}
+          <input type="text" name="task_title" value={this.state.task_title} onChange={this.onChangeHandler} required/>
+          <textarea className="card-textarea" rows="4" name="task_details" value={this.state.task_details} onChange={this.onChangeHandler} required>
+            {this.state.task_details}
           </textarea>
+          <input type="date" name="task_completion_date" value={this.state.task_completion_date} onChange={this.onChangeHandler} required/>
         </div>
         <hr style={hr_color}/>
       </>

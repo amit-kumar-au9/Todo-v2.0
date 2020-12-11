@@ -7,41 +7,32 @@ class AddTodo extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            new_task: '',
-            error: false,
-            errorMsg: 'Task Title Already Exists'
+            new_task_title: '',
+            new_task_date: '',
+            new_task_details: ''
         }
     }
 
     onChangeHandler = (e) => {
         this.setState({
-            new_task: e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
     pushTasks = (e) =>{
         e.preventDefault()
-        const error = (this.props.tasks.indexOf(this.state.new_task) === -1)
-        if (error){
-            if (this.state.new_task){
-                this.props.dispatch({
-                    type: STORE_ACTION.ADD,
-                    payload: this.state.new_task
-                })
-            }
-            this.setState({
-                ...this.state,
-                error: false,
-                new_task: ''
+        const task_arr = [this.state.new_task_title, this.state.new_task_date, this.state.new_task_details]
+        if (task_arr[0] && task_arr[1] && task_arr[2]){
+            this.props.dispatch({
+                type: STORE_ACTION.ADD,
+                payload: task_arr
             })
         }
-        else{
-            this.setState({
-                ...this.state,
-                error: true,
-                new_task: ''
-            })
-        }
+        this.setState({
+            new_task_title: '',
+            new_task_date: '',
+            new_task_details: ''
+        })
     }
     
     render(){
@@ -54,17 +45,17 @@ class AddTodo extends React.Component{
                         <div className="row">
                             <div className="col-12">
                                 <label>Task Title: </label> <small>{this.state.error && this.state.errorMsg}</small>
-                                <input className="form-control" type="text" value={this.state.new_task} name="value" placeholder="Enter the task" onChange={this.onChangeHandler}/>
+                                <input className="form-control" type="text" value={this.state.new_task_title} name="new_task_title" placeholder="Enter the task" onChange={this.onChangeHandler} required/>
                             </div>
                             <div className="col-12">
                                 <hr/>
                                 <label>End Date: </label>
-                                <input className="form-control" type="date"/>
+                                <input className="form-control" type="date" value={this.state.new_task_date} name="new_task_date" onChange={this.onChangeHandler} required/>
                             </div>
                             <div className="col-12">
                                 <hr/>
                                 <label>Task Details: </label>
-                                <textarea className="form-control" rows="2" placeholder="Enter the details"></textarea>
+                                <textarea className="form-control" rows="2" placeholder="Enter the details" value={this.state.new_task_details} name="new_task_details" onChange={this.onChangeHandler} required></textarea>
                                 <hr/>
                             </div>
                         </div>

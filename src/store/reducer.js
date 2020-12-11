@@ -1,14 +1,21 @@
 const initialState = {
-    tasks: []
+    tasks: [],
+    counter: 0
 }
 
 const reducer = (state, action) => {
     state = state || initialState
     switch(action.type){
         case 'ADD_TASK':
+            const new_task = {
+                task_title: action.payload[0], 
+                task_completion_date: action.payload[1], 
+                task_details: action.payload[2],
+                id: state.counter++
+            }
             return{
                 ...state, 
-                tasks: [action.payload,...state.tasks]
+                tasks: [new_task,...state.tasks]
             }
         case 'REMOVE_TASK':
             {
