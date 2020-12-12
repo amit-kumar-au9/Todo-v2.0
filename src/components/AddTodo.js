@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import '../assets/css/add-todo.css'
-import { STORE_ACTION} from '../actions'
+import { STORE_ACTION } from '../actions'
 
 const today_date = new Date()
 const month = today_date.getMonth()+1
@@ -39,11 +39,15 @@ class AddTodo extends React.Component{
 
     pushTasks = (e) =>{
         e.preventDefault()
-        const task_arr = [this.state.title, this.state.end_date, this.state.detail, 'pending']
-        if (task_arr[0] && task_arr[1] && task_arr[2]){
+        if (this.state.title && this.state.end_date && this.state.detail){
             this.props.dispatch({
                 type: STORE_ACTION.ADD,
-                payload: task_arr
+                payload: {
+                    title: this.state.title, 
+                    creation_date: curr,
+                    end_date: this.state.end_date, 
+                    detail: this.state.detail
+                }
             })
         }
         this.setState({

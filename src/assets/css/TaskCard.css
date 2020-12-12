@@ -15,18 +15,8 @@
 .task-card {
   position: relative;
   text-align: center;
-  /* margin-right: 5px; */
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgb(0 0 0 / 0.2);
-}
-
-.task-card .col-4 {
-  padding-right: 4px;
-}
-
-.task-card .col-8 {
-  padding-left: 0px;
-  /* text-align: center; */
 }
 
 .card-textarea {
@@ -57,10 +47,11 @@ textarea::-webkit-scrollbar-thumb {
   border: none;
   color: white;
   text-align: center;
-  font-size: 18px;
+  font-size: 1.5rem;
   width: 100%;
+  font-weight: 500;
+  line-height: 1.2;
   text-transform: uppercase;
-  text-decoration: underline;
 }
 
 .task-card input[type="date"] {
@@ -72,4 +63,15 @@ textarea::-webkit-scrollbar-thumb {
 
 .inline-content {
   display: inline-block;
+}
+
+.date_container {
+  text-align: left;
+}
+
+.date_container input[type="textarea"] {
+  background-color: #fff0;
+  border: none;
+  padding-left: 10px;
+  color: white;
 }

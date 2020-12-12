@@ -53,6 +53,7 @@ class CompletedTask extends React.Component{
         task_idx: this.props.id, 
         new_value: {
           title : this.props.task_value.title,
+          creation_date: this.props.task_value.creation_date,
           end_date: this.props.task_value.end_date,
           detail: this.props.task_value.detail,
           status: 'pending',
@@ -78,10 +79,10 @@ class CompletedTask extends React.Component{
         <div className="task-card" style={card_color}>
           <div className="container">
             <div className="row">
-              <div className="col-8">
-                <input type="text" name="title" value={this.props.task_value.title} readOnly/>
+              <div className="col-7">
+                <h4 className="text-uppercase">{this.props.task_value.title}</h4>
               </div>
-              <div className="col-4">
+              <div className="col-5">
                 <i className="task-action fa fa-trash text-danger bg-white" onClick={this.popTasks} aria-hidden="true"></i>
                 {this.state.row_no === 2 && <i className="task-action text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 4)} aria-hidden="true"></i> }
                 {this.state.row_no > 2 && <i className="task-action text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
@@ -89,10 +90,20 @@ class CompletedTask extends React.Component{
               </div>
             </div>
           </div>
-          <textarea className="card-textarea" rows={this.state.row_no} name="detail" value={this.props.task_value.detail} readOnly>
-            {this.props.task_value.detail}
+          <textarea className="card-textarea text-capitalize" rows={this.state.row_no} value={this.props.task_value.detail} readOnly>
           </textarea>
-          <input type="date" name="end_date" value={this.props.task_value.end_date} readOnly/>
+          <div className="row date_container">
+            <div className="col-7">
+              <label className="pl-3">End Date: </label>
+              {/* <label>{this.props.task_value.end_date}</label> */}
+              <input type="textarea" value={this.props.task_value.end_date} required readOnly/>
+
+            </div>
+            <div className="col-5">
+              <label>Created on:</label>
+              <label>{this.props.task_value.creation_date}</label>
+            </div>
+          </div>
         </div>
         <hr style={hr_color}/>
       </>

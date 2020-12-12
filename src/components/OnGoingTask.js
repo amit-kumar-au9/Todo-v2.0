@@ -43,6 +43,7 @@ class OnGoingTask extends React.Component{
         task_idx: this.props.id, 
         new_value: {
           title : this.state.title,
+          creation_date: this.props.task_value.creation_date,
           end_date: this.state.end_date,
           detail: this.state.detail,
           status: this.props.task_value.status,
@@ -59,6 +60,7 @@ class OnGoingTask extends React.Component{
         task_idx: this.props.id, 
         new_value: {
           title : this.props.task_value.title,
+          creation_date: this.props.task_value.creation_date,
           end_date: this.props.task_value.end_date,
           detail: this.props.task_value.detail,
           status: 'completed',
@@ -92,21 +94,29 @@ class OnGoingTask extends React.Component{
         <div className="task-card" style={card_color}>
           <div className="container">
             <div className="row">
-              <div className="col-8">
+              <div className="col-7">
                 <input type="text" name="title" maxLength="40" value={this.state.title} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required/>
               </div>
-              <div className="col-4">
+              <div className="col-5">
                 <i className="task-action fa fa-check text-success bg-white" onClick={this.editStatus} aria-hidden="true"></i>
                 {this.state.row_no === 2 && <i className="task-action text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 4)} aria-hidden="true"></i> }
                 {this.state.row_no > 2 && <i className="task-action text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
-                {/* <i className="task-action fa fa-spinner text-primary bg-white fa-spin" aria-hidden="true"></i> */}
               </div>
             </div>
           </div>
           <textarea className="card-textarea" rows={this.state.row_no} name="detail" value={this.state.detail} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required>
             {this.state.detail}
           </textarea>
-          <input type="date" name="end_date" value={this.state.end_date} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required/>
+          <div className="row date_container">
+            <div className="col-7">
+              <label className="pl-3">End Date: </label>
+              <input type="date" name="end_date" value={this.state.end_date} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required/>
+            </div>
+            <div className="col-5">
+              <label>Created on:</label>
+              <label>{this.props.task_value.creation_date}</label>
+            </div>
+          </div>
         </div>
         <hr style={hr_color}/>
       </>

@@ -19,12 +19,10 @@ class Index extends React.Component{
                 payload: store
             })
         }
-        console.log("componentDidMount",store)
     }
 
     componentDidUpdate(){
         localStorage.setItem("store",JSON.stringify(this.props.store));
-        console.log("componentDidUpdate",this.props.store)
     }
     
     render(){
@@ -52,7 +50,6 @@ class Index extends React.Component{
             completed_task = <EmptyTask text="Your completed task will look here" index="1"/>
         }
 
-        console.log("Render",this.props.store)
         return(
             <>  
                 <Navbar/>

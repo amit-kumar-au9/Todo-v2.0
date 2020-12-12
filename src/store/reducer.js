@@ -9,20 +9,24 @@ const reducer = (state, action) => {
     state = state || initialState
     switch(action.type){
         case 'ADD_TASK':
-            const new_task = {
-                title: action.payload[0], 
-                end_date: action.payload[1], 
-                detail: action.payload[2],
-                status: action.payload[3],
-                id: state.counter++
-            }
-            state.pending_counter++
-            return{
-                ...state, 
-                tasks: [...state.tasks,new_task]
+            {
+                const new_task = {
+                    title: action.payload.title, 
+                    creation_date: action.payload.creation_date,
+                    end_date: action.payload.end_date, 
+                    detail: action.payload.detail,
+                    status: 'pending',
+                    id: state.counter+1
+                }
+                state.pending_counter += 1
+                return{
+                    ...state, 
+                    tasks: [...state.tasks,new_task]
+                }
             }
         case 'REMOVE_TASK':
-            {   state.completed_counter--
+            {   state.completed_counter -= 1
+                state.counter -= 1
                 return{
                     ...state,
                     tasks: [...state.tasks.slice(0, action.payload),
