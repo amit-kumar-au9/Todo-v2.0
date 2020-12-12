@@ -20,22 +20,25 @@ body {
 
 @keyframes slide {
   0% {
+    background-image: url("./assets/img/1.jpeg");
+  }
+  16.6% {
     background-image: url("./assets/img/2.jpg");
   }
-  20% {
+  33.3% {
     background-image: url("./assets/img/3.jpg");
   }
-  40% {
-    background-image: url("./assets/img/4.png");
+  50% {
+    background-image: url("./assets/img/4.jpg");
   }
-  60% {
+  65.6% {
     background-image: url("./assets/img/5.jpg");
   }
-  80% {
+  84% {
     background-image: url("./assets/img/6.jpg");
   }
   100% {
-    background-image: url("./assets/img/2.jpg");
+    background-image: url("./assets/img/1.jpeg");
   }
 }
 
@@ -54,6 +57,17 @@ code {
 }
 
 *::-webkit-scrollbar-thumb {
+  background-color: #343a40;
+  border-radius: 20px;
+}
+
+*::-moz-scrollbar {
+  width: 8px;
+}
+*::-moz-scrollbar-track {
+  background: #fff0;
+}
+*::-moz-scrollbar-thumb {
   background-color: #343a40;
   border-radius: 20px;
 }
