@@ -12,25 +12,25 @@ import '../assets/css/index.css'
 class Index extends React.Component{
 
     componentDidMount = () =>{
-        const all_tasks = JSON.parse(localStorage.getItem("all_tasks"))
-        if (all_tasks && (this.props.tasks.length === 0)){
-            all_tasks.forEach(element => {
-                this.props.dispatch({
-                    type: STORE_ACTION.ADD,
-                    payload: [element.title, element.end_date, element.detail, element.status]
-                })
-            });
+        const store = JSON.parse(localStorage.getItem("store"))
+        if (store && (store.tasks.length !== 0)){
+            this.props.dispatch({
+                type: STORE_ACTION.LOCAL_STORAGE,
+                payload: store
+            })
         }
+        console.log("componentDidMount",store)
     }
 
     componentDidUpdate(){
-        localStorage.setItem("all_tasks",JSON.stringify(this.props.tasks));
+        localStorage.setItem("store",JSON.stringify(this.props.store));
+        console.log("componentDidUpdate",this.props.store)
     }
     
     render(){
         var on_going_task = ''
-        if (this.props.pending_counter > 0 ){
-            on_going_task = this.props.tasks.map((task,idx) => {
+        if (this.props.store.pending_counter > 0 ){
+            on_going_task = this.props.store.tasks.map((task,idx) => {
                                 return ( task.status === 'pending' &&
                                     <OnGoingTask task_value={task} key={idx} id={idx}/>
                                     )
@@ -41,8 +41,8 @@ class Index extends React.Component{
         }
 
         var completed_task = ''
-        if (this.props.completed_counter > 0 ){
-            completed_task = this.props.tasks.map((task,idx) => {
+        if (this.props.store.completed_counter > 0 ){
+            completed_task = this.props.store.tasks.map((task,idx) => {
                                 return ( task.status === 'completed' &&
                                     <CompletedTask task_value={task} key={idx} id={idx}/>
                                     )
@@ -52,7 +52,7 @@ class Index extends React.Component{
             completed_task = <EmptyTask text="Your completed task will look here" index="1"/>
         }
 
-        console.log(this.props.tasks)
+        console.log("Render",this.props.store)
         return(
             <>  
                 <Navbar/>
@@ -89,9 +89,7 @@ class Index extends React.Component{
 
 const mapStateToProps = (state) =>{
     return {
-        tasks : state.tasks,
-        pending_counter: state.pending_counter,
-        completed_counter: state.completed_counter,
+        store : state
     }
 }
 

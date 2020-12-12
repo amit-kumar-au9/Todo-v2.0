@@ -46,24 +46,24 @@ class CompletedTask extends React.Component{
     })
   }
 
-  editTasks = (status) => {
+  editStatus = () => {
     this.props.dispatch({
-      type: STORE_ACTION.EDIT,
+      type: STORE_ACTION.CHANGE_STATUS,
       payload:{ 
         task_idx: this.props.id, 
         new_value: {
           title : this.props.task_value.title,
           end_date: this.props.task_value.end_date,
           detail: this.props.task_value.detail,
-          status: status
-        } 
+          status: 'pending',
+          id: this.props.task_value.id
+        }
       }
     })
   }
 
   index = this.props.id % bg_colors.length
   render(){
-    console.log(this.props.task_value.id)
     const card_color = {
       color: "white",
       background: bg_colors[this.index]
@@ -79,20 +79,20 @@ class CompletedTask extends React.Component{
           <div className="container">
             <div className="row">
               <div className="col-8">
-                <input type="text" name="title" value={this.props.task_value.title} onChange={this.onChangeHandler} readOnly/>
+                <input type="text" name="title" value={this.props.task_value.title} readOnly/>
               </div>
               <div className="col-4">
                 <i className="task-action fa fa-trash text-danger bg-white" onClick={this.popTasks} aria-hidden="true"></i>
-                {this.state.row_no === 2 && <i class="task-action text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 4)} aria-hidden="true"></i> }
-                {this.state.row_no > 2 && <i class="task-action text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
-                <i className="task-action fa fa-reply text-success bg-white" onClick={() => this.editTasks('pending')} aria-hidden="true"></i>
+                {this.state.row_no === 2 && <i className="task-action text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 4)} aria-hidden="true"></i> }
+                {this.state.row_no > 2 && <i className="task-action text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
+                <i className="task-action fa fa-reply text-success bg-white" onClick={this.editStatus} aria-hidden="true"></i>
               </div>
             </div>
           </div>
-          <textarea className="card-textarea" rows={this.state.row_no} name="detail" value={this.props.task_value.detail} onChange={this.onChangeHandler} readOnly>
+          <textarea className="card-textarea" rows={this.state.row_no} name="detail" value={this.props.task_value.detail} readOnly>
             {this.props.task_value.detail}
           </textarea>
-          <input type="date" name="end_date" value={this.props.task_value.end_date} onChange={this.onChangeHandler} readOnly/>
+          <input type="date" name="end_date" value={this.props.task_value.end_date} readOnly/>
         </div>
         <hr style={hr_color}/>
       </>

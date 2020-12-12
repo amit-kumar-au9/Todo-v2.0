@@ -36,7 +36,7 @@ class OnGoingTask extends React.Component{
     }
   }
 
-  editTasks = (status) => {
+  editTasks = () => {
     this.props.dispatch({
       type: STORE_ACTION.EDIT,
       payload:{ 
@@ -45,8 +45,25 @@ class OnGoingTask extends React.Component{
           title : this.state.title,
           end_date: this.state.end_date,
           detail: this.state.detail,
-          status: status
+          status: this.props.task_value.status,
+          id: this.props.task_value.id
         } 
+      }
+    })
+  }
+
+  editStatus = () => {
+    this.props.dispatch({
+      type: STORE_ACTION.CHANGE_STATUS,
+      payload:{ 
+        task_idx: this.props.id, 
+        new_value: {
+          title : this.props.task_value.title,
+          end_date: this.props.task_value.end_date,
+          detail: this.props.task_value.detail,
+          status: 'completed',
+          id: this.props.task_value.id
+        }
       }
     })
   }
@@ -79,9 +96,9 @@ class OnGoingTask extends React.Component{
                 <input type="text" name="title" maxLength="40" value={this.state.title} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required/>
               </div>
               <div className="col-4">
-                <i className="task-action fa fa-check text-success bg-white" onClick={() => this.editTasks('completed')} aria-hidden="true"></i>
-                {this.state.row_no === 2 && <i class="task-action text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 4)} aria-hidden="true"></i> }
-                {this.state.row_no > 2 && <i class="task-action text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
+                <i className="task-action fa fa-check text-success bg-white" onClick={this.editStatus} aria-hidden="true"></i>
+                {this.state.row_no === 2 && <i className="task-action text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 4)} aria-hidden="true"></i> }
+                {this.state.row_no > 2 && <i className="task-action text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
                 {/* <i className="task-action fa fa-spinner text-primary bg-white fa-spin" aria-hidden="true"></i> */}
               </div>
             </div>

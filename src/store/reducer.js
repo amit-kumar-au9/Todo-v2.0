@@ -30,13 +30,23 @@ const reducer = (state, action) => {
                 }
             }
         case 'EDIT_TASK':
-            {   if(action.payload.new_value.status === 'pending'){
-                    state.pending_counter++
-                    state.completed_counter--
+            {   
+                return{
+                    ...state,
+                    tasks: [...state.tasks.slice(0, action.payload.task_idx),
+                        action.payload.new_value,
+                        ...state.tasks.slice(action.payload.task_idx + 1)]
+                }
+            }
+        case 'CHANGE_STATUS':
+            {   
+                if(action.payload.new_value.status === 'pending'){
+                    state.pending_counter += 1
+                    state.completed_counter -= 1
                 }
                 else{
-                    state.pending_counter--
-                    state.completed_counter++
+                    state.pending_counter -= 1
+                    state.completed_counter += 1
                 }
                 return{
                     ...state,
@@ -44,6 +54,10 @@ const reducer = (state, action) => {
                         action.payload.new_value,
                         ...state.tasks.slice(action.payload.task_idx + 1)]
                 }
+            }
+        case 'ADD_FROM_LS':
+            {
+                return action.payload
             }
         default:
             return state
