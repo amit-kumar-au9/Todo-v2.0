@@ -72,7 +72,7 @@ class AddTodo extends React.Component{
                                     type="text" 
                                     value={this.state.title} 
                                     name="title" 
-                                    maxLength="40"
+                                    maxLength="20"
                                     placeholder="Enter the task" 
                                     onChange={this.onChangeHandler} 
                                     required

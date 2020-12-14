@@ -53,6 +53,13 @@ class OnGoingTask extends React.Component{
     })
   }
 
+  onChangeHandler = (key, value) => {
+    this.setState({
+      [key] : value
+    })
+    this.editTasks()
+  }
+
   editStatus = () => {
     this.props.dispatch({
       type: STORE_ACTION.CHANGE_STATUS,
@@ -70,14 +77,7 @@ class OnGoingTask extends React.Component{
     })
   }
 
-  onChangeHandler = (key, value) => {
-    this.setState({
-      [key] : value
-    })
-    this.editTasks('pending')
-  }
-
-  index = this.props.id % bg_colors.length
+  index = this.props.task_value.id % bg_colors.length
   
   render(){
     const card_color = {
@@ -92,19 +92,13 @@ class OnGoingTask extends React.Component{
     return(
       <>
         <div className="task-card" style={card_color}>
-          <div className="container">
-            <div className="row">
-              <div className="col-7">
-                <input type="text" name="title" maxLength="40" value={this.state.title} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required/>
-              </div>
-              <div className="col-5">
-                <i className="task-action fa fa-check text-success bg-white" onClick={this.editStatus} aria-hidden="true"></i>
-                {this.state.row_no === 2 && <i className="task-action text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 4)} aria-hidden="true"></i> }
-                {this.state.row_no > 2 && <i className="task-action text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
-              </div>
-            </div>
+          <div className="task-action">
+            <i className="fa fa-check text-success bg-white" onClick={this.editStatus} aria-hidden="true"></i>
+            {this.state.row_no === 2 && <i className="text-secondary bg-white fa fa-chevron-down" onClick={() => this.onChangeHandler('row_no', 5)} aria-hidden="true"></i> }
+            {this.state.row_no > 2 && <i className="text-secondary bg-white fa fa-chevron-up" onClick={() => this.onChangeHandler('row_no', 2)} aria-hidden="true"></i>}
           </div>
-          <textarea className="card-textarea" rows={this.state.row_no} name="detail" value={this.state.detail} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required>
+          <input type="text" name="title" maxLength="20" value={this.state.title} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required/>
+          <textarea rows={this.state.row_no} name="detail" value={this.state.detail} onChange={(e) => this.onChangeHandler(e.target.name, e.target.value)} required>
             {this.state.detail}
           </textarea>
           <div className="row date_container">

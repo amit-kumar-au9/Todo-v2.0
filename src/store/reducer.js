@@ -16,7 +16,7 @@ const reducer = (state, action) => {
                     end_date: action.payload.end_date, 
                     detail: action.payload.detail,
                     status: 'pending',
-                    id: state.counter+1
+                    id: state.counter++
                 }
                 state.pending_counter += 1
                 return{
@@ -26,7 +26,6 @@ const reducer = (state, action) => {
             }
         case 'REMOVE_TASK':
             {   state.completed_counter -= 1
-                state.counter -= 1
                 return{
                     ...state,
                     tasks: [...state.tasks.slice(0, action.payload),
