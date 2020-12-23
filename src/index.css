@@ -22,7 +22,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-image: var(--gradient);
-  background-size: 500%;
+  background-size: 400% 400%;
   animation: bg-animation 50s ease infinite;
 }
 
@@ -41,6 +41,13 @@ body {
   }
   100% {
     background-position: left top;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  body {
+    width: 100%;
+    height: 100%;
   }
 }
 
