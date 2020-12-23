@@ -1,11 +1,12 @@
 :root {
   --gradient: linear-gradient(
     135deg,
-    #ff930f,
     #ff0f7b,
-    #ff5858,
-    #fff95b,
-    #0974f1
+    #f89b29,
+    #439cfb,
+    #ea5459,
+    #ff0f7b,
+    #f89b29
   );
 }
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
@@ -22,24 +23,24 @@ body {
   height: 100vh;
   background-image: var(--gradient);
   background-size: 500%;
-  animation: bg-animation 20s ease infinite alternate;
+  animation: bg-animation 50s ease infinite;
 }
 
 @keyframes bg-animation {
   0% {
-    background-position: left;
+    background-position: left top;
   }
   25% {
-    background-position: center;
+    background-position: center center;
   }
   50% {
-    background-position: right;
+    background-position: right bottom;
   }
   75% {
-    background-color: center;
+    background-position: center center;
   }
   100% {
-    background-position: left;
+    background-position: left top;
   }
 }
 
